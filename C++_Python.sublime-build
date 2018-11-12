@@ -1,0 +1,15 @@
+{
+    "encoding": "utf-8" ,
+    "working_dir": "$file_path",
+    "shell_cmd": "g++ -std=c++14 \"$file_name\" -L/usr/lib -lpython3.5m -lpthread -ldl  -lutil -lm  -Xlinker -export-dynamic -Wl,-O1 -Wl,-Bsymbolic-functions -o \"$file_base_name\" `pkg-config --cflags --libs opencv`",
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "selector": "source.c++, source.hpp, source.c, source.cc",
+ 
+    "variants": 
+    [
+        {    
+        "name": "Run",
+        "shell_cmd": "g++ -std=c++14 '$file' -L/usr/lib -lpython3.5m -lpthread -ldl  -lutil -lm  -Xlinker -export-dynamic -Wl,-O1 -Wl,-Bsymbolic-functions -o '$file_base_name' `pkg-config --cflags --libs opencv` && gnome-terminal -x bash -c \"'${file_path}/${file_base_name}';read -p '\n\nYHL make it !'\""
+        }
+    ]
+}
